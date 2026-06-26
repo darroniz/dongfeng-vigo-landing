@@ -1458,43 +1458,46 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 .topbar__close:hover { color: #fff; }
 .press-card__quote { border-left-color: var(--color-olive); }
 
-/* ─────────  HERO VIGO (periwinkle full-bleed + wordmark)  ───────── */
-.hero {
-  background: linear-gradient(168deg, #8C9AE6 0%, #A7B1EC 38%, #D2D8F4 72%, #FFFFFF 100%);
-}
+/* ─────────  HERO VIGO — círculo con degradado fuerte + coche encima (asimétrico, estilo BOX)  ───────── */
+.hero { background: #EDF0FA; }                 /* fondo claro frío, sin degradado a sangre */
 .hero__h1 { color: var(--color-ink); }
 .hero__h1 em { color: var(--color-brand-blue); }
 .underline-accent::after { background: var(--color-olive); opacity: .85; transform: skewX(-6deg); }
-.chip { background: rgba(255,255,255,.82); border-color: rgba(255,255,255,.9); color: var(--color-ink-2); backdrop-filter: blur(4px); }
+.chip { background: #fff; border-color: var(--color-line-strong); color: var(--color-ink-2); }
 
-.hero__visual { aspect-ratio: 16/11; margin-inline: -2%; overflow: visible; }
-.hero__visual::before { display: none; }   /* sin círculo amarillo de BOX */
-.hero__wordmark {
+.hero__visual { overflow: visible; }
+/* círculo geométrico relleno con el degradado periwinkle→azul (mucha fuerza) */
+.hero__visual::before {
+  display: block;
+  width: 84%;
+  background: radial-gradient(circle at 33% 27%, #C6CEF6 0%, #8C9AE6 40%, #5564C8 76%, #36439E 100%);
+  box-shadow: 0 44px 90px rgba(48,58,140,.30);
+}
+/* anillo sutil concéntrico para dar profundidad y diferenciar del círculo plano de BOX */
+.hero__visual::after {
+  content: "";
   position: absolute;
-  top: 46%; left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(7rem, 22vw, 17rem);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: rgba(255,255,255,.62);
-  z-index: 1;
+  width: 96%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.35);
+  z-index: 0;
   pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
 }
+.hero__wordmark { display: none; }            /* fuera el wordmark centrado (lo hacía simétrico) */
 .hero__image {
-  width: 108%; max-width: 108%;
-  filter: drop-shadow(0 26px 34px rgba(30,40,90,.28));
+  width: 116%; max-width: 116%;
+  filter: drop-shadow(0 32px 44px rgba(25,32,80,.42));
 }
-.hero__price-tag { background: rgba(255,255,255,.94); border-color: rgba(255,255,255,.9); }
+.hero__price-tag { background: #fff; border-color: var(--color-line); }
 .hero__price-number { color: var(--color-ink); }
-@media (min-width: 960px) { .hero__visual { aspect-ratio: 16/12; } }
 @media (max-width: 959px) {
-  .hero { background: linear-gradient(170deg, #8C9AE6 0%, #AEB8EE 50%, #E7EAF8 100%); }
-  .hero__wordmark { font-size: clamp(5rem, 30vw, 9rem); top: 42%; }
-  .hero .hero__kicker { display: flex; }   /* en VIGO sí mostramos chips en móvil */
+  .hero { background: #E9EDF9; }
+  .hero .hero__kicker { display: flex; }       /* en VIGO sí mostramos chips en móvil */
+  .hero__visual::before { width: 78%; }
+  .hero__visual::after { display: none; }
 }
 
 /* ─────────  BLOQUE SECCIÓN OSCURA AZUL (reutilizable)  ───────── */
