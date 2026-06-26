@@ -1663,3 +1663,56 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 .cta-final__visual::before { background: radial-gradient(circle at 50% 50%, rgba(174,184,238,.22) 0%, transparent 65%); }
 .cta-final .btn--primary { background: #fff; color: var(--color-ink); box-shadow: 0 10px 40px rgba(0,0,0,.35); }
 .cta-final .btn--primary:hover { background: #fff; opacity: .92; }
+
+/* ════════ Revisión Drawbridge (26-jun) ════════ */
+/* #7 · V2L: imagen/escenario más grande */
+.v2l__stage img { width: 98%; }
+@media (min-width: 960px) { .v2l__grid { grid-template-columns: 1.28fr 0.9fr; } }
+/* #6 · Portón "Cabe tu vida": imagen más grande */
+.space__media { aspect-ratio: 5/4; }
+@media (min-width: 960px) { .space__grid { grid-template-columns: 1.3fr 0.85fr; } }
+/* #10 · CTA final: foto del coche más grande */
+.cta-final__visual { aspect-ratio: 5/4; }
+.cta-final__visual img { width: 108%; max-width: 108%; }
+@media (min-width: 960px) { .cta-final__grid { grid-template-columns: 0.82fr 1.18fr; } }
+
+/* #2 · Hotspots: popup SOBRE la imagen (no panel abajo) */
+.hotspots__pop {
+  position: absolute; z-index: 6; max-width: 262px;
+  background: rgba(255,255,255,.97); backdrop-filter: blur(6px);
+  border: 1px solid var(--color-line); border-radius: var(--r-md);
+  box-shadow: 0 14px 34px rgba(15,20,40,.26);
+  padding: 13px 16px; opacity: 0; transform: translateY(6px) scale(.97);
+  transition: opacity .2s ease, transform .2s ease; pointer-events: none;
+}
+.hotspots__pop.is-shown { opacity: 1; transform: translateY(0) scale(1); }
+.hotspots__pop h3 { font-size: 16px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
+.hotspots__pop p { font-size: 13.5px; line-height: 1.45; color: var(--color-ink-muted); margin: 0; }
+@media (max-width: 560px) {
+  .hotspots__pop { left: 10px !important; right: 10px !important; top: auto !important; bottom: 10px !important; max-width: none; transform: translateY(0); }
+}
+
+/* #1 · V2L: barra de conexión coche → ⚡ → dispositivo */
+.v2l__conn {
+  position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
+  display: flex; align-items: center; max-width: 94%;
+  background: rgba(11,13,30,.58); backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.18); border-radius: var(--r-pill); padding: 6px 8px;
+}
+.v2l__conn-end { display: inline-flex; align-items: center; gap: 7px; color: #fff; font-size: 12.5px; font-weight: 700; white-space: nowrap; padding: 4px 9px; }
+.v2l__conn-end svg { width: 18px; height: 18px; color: var(--color-peri-2); }
+.v2l__conn-ico { display: inline-flex; }
+.v2l__conn-ico svg { color: #fff; }
+.v2l__conn-flow { position: relative; width: 50px; height: 2px; margin: 0 2px; flex: none;
+  background-image: linear-gradient(90deg, rgba(174,184,238,.65) 50%, transparent 50%); background-size: 8px 2px; animation: v2lflow .6s linear infinite; }
+@keyframes v2lflow { from { background-position: 0 0; } to { background-position: 8px 0; } }
+.v2l__conn-flow .dot { position: absolute; top: 50%; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #7DF9A0; transform: translateY(-50%); box-shadow: 0 0 8px #7DF9A0; animation: v2lspark 1.5s linear infinite; }
+@keyframes v2lspark { 0% { left: 0; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+@media (max-width: 560px) { .v2l__conn-end { font-size: 11.5px; padding: 4px 6px; } .v2l__conn-flow { width: 34px; } }
+
+/* #4 · Carga: taza de café + animación más lenta para disfrutarla */
+.charge__fill { transition: width 3.4s cubic-bezier(.25,.8,.3,1); padding-right: 12px; }
+.charge__min { position: relative; }
+.charge__cup { font-size: 22px; line-height: 1; margin-left: 7px; display: inline-block; animation: cupbob 1.7s ease-in-out infinite; }
+@keyframes cupbob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .charge__cup, .v2l__conn-flow, .v2l__conn-flow .dot { animation: none; } }

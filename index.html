@@ -166,10 +166,20 @@
       <div class="container v2l__grid">
         <div class="v2l__stage">
           <img src="assets/hero-vigo.webp" alt="Dongfeng VIGO alimentando dispositivos con la tecnología V2L">
-          <span class="v2l__plug"><span class="dot"></span> V2L activo · 3,3 kW</span>
           <div class="v2l__readout" id="v2lReadout" aria-live="polite">
             <div class="v2l__readout-dev" id="v2lDev">Nevera de camping</div>
             <div class="v2l__readout-num"><span id="v2lNum">52</span> <span>h</span></div>
+          </div>
+          <div class="v2l__conn" aria-hidden="true">
+            <span class="v2l__conn-end">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V3M15 7V3M7 7h10v4a5 5 0 0 1-10 0V7ZM12 16v5"/></svg>
+              Toma V2L
+            </span>
+            <span class="v2l__conn-flow"><span class="dot"></span></span>
+            <span class="v2l__conn-end v2l__conn-dev">
+              <span class="v2l__conn-ico" id="v2lConnIco"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M5 10h14M9 5v2M9 14v2"/></svg></span>
+              <span id="v2lConnName">Nevera</span>
+            </span>
           </div>
         </div>
 
@@ -212,17 +222,13 @@
         </header>
 
         <div class="hotspots" id="hotspots">
-          <div class="hotspots__stage">
+          <div class="hotspots__stage" id="hsStage">
             <img src="assets/interior-salpicadero.webp" alt="Salpicadero del Dongfeng VIGO" width="1800" height="1125">
             <button class="hotspot is-active" style="left:50%;top:46%" data-index="0" aria-label="Pantalla central"><span></span></button>
             <button class="hotspot" style="left:17%;top:60%" data-index="1" aria-label="Iluminación ambiente"><span></span></button>
             <button class="hotspot" style="left:51%;top:78%" data-index="2" aria-label="Carga inalámbrica"><span></span></button>
             <button class="hotspot" style="left:85%;top:42%" data-index="3" aria-label="Habitabilidad"><span></span></button>
-          </div>
-
-          <div class="hotspots__panel">
-            <img class="hotspots__thumb" id="hsThumb" src="assets/interior-pantalla.webp" alt="">
-            <div>
+            <div class="hotspots__pop" id="hsPop" role="status" aria-live="polite">
               <h3 id="hsTitle">Pantalla central de gran formato</h3>
               <p id="hsText">Navegación, climatización y multimedia integrados en una sola pantalla táctil de alta resolución. Lo que buscas, a un gesto.</p>
             </div>
@@ -244,13 +250,13 @@
         <div class="charge__head">
           <p class="eyebrow" style="justify-content:center">Carga rápida</p>
           <h2 class="section-title">Del 30 al 80% en <em>18 minutos.</em></h2>
-          <p class="section-sub" style="margin-inline:auto">Lo que tardas en pedir un café y bebértelo. Conectas, descansas y sigues con 250&nbsp;km más en el bolsillo.</p>
+          <p class="section-sub" style="margin-inline:auto">Lo que tardas en tomarte un café. Conectas, descansas y sigues con 250&nbsp;km más en el bolsillo.</p>
         </div>
 
         <div class="charge__bar-wrap" id="chargeBar">
           <div class="charge__labels"><span>30%</span><span>80%</span></div>
           <div class="charge__track">
-            <div class="charge__fill">18 min</div>
+            <div class="charge__fill"><span class="charge__min">18 min</span><span class="charge__cup" aria-hidden="true">☕</span></div>
           </div>
           <div class="charge__scale"><span>Llegas, conectas en carga rápida DC…</span><span>…y te vas.</span></div>
         </div>
@@ -281,7 +287,7 @@
         </div>
         <div class="space__copy">
           <p class="eyebrow">Espacio</p>
-          <h2 class="section-title">Un SUV que <em>cabe tu vida.</em></h2>
+          <h2 class="section-title">Un SUV donde <em>cabe tu vida.</em></h2>
 
           <dl class="space__stats">
             <div class="space__stat"><dt>500 L</dt><dd>maletero</dd></div>
@@ -306,7 +312,7 @@
     <section class="section--ink">
       <div class="container warranty__inner">
         <h2 class="warranty__big">10 años de batería.<br><em>Sin mirar el cuentakilómetros.</em></h2>
-        <p class="warranty__sub">La cobertura más amplia de su segmento en España. Porque un eléctrico se compra para que dure muchos años, no para preocuparte por él.</p>
+        <p class="warranty__sub">Un eléctrico se compra para que te dure muchos años. Por eso, la cobertura más amplia de su segmento en España.</p>
         <div class="warranty__row">
           <div><strong>7 años</strong>o 300.000 km de vehículo</div>
           <div><strong>10 años</strong>de garantía en la batería</div>

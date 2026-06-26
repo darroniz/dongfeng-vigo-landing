@@ -291,34 +291,59 @@
   const devs = $$('.v2l__dev');
   const devName = $('#v2lDev');
   const devNum  = $('#v2lNum');
+  const connIco = $('#v2lConnIco');
+  const connName = $('#v2lConnName');
   function setDevice(btn) {
     devs.forEach(d => d.classList.toggle('is-active', d === btn));
     const watts = parseInt(btn.dataset.watts, 10) || 100;
     const hours = Math.round(USABLE_WH / watts);
     if (devName) devName.textContent = btn.dataset.name;
     if (devNum)  devNum.textContent = hours.toLocaleString('es-ES');
+    // barra de conexión: el coche alimenta ESTE dispositivo
+    const svg = btn.querySelector('svg');
+    if (connIco && svg) connIco.innerHTML = svg.outerHTML;
+    if (connName) connName.textContent = btn.dataset.name.split(' ')[0];
   }
   devs.forEach(btn => btn.addEventListener('click', () => setDevice(btn)));
   if (devs.length) setDevice(devs.find(d => d.classList.contains('is-active')) || devs[0]);
 
   /* ----------  INTERIOR: hotspots  ---------- */
   const HS = [
-    { title: 'Pantalla central de gran formato', text: 'Navegación, climatización y multimedia integrados en una sola pantalla táctil de alta resolución. Lo que buscas, a un gesto.', thumb: 'assets/interior-pantalla.webp' },
-    { title: 'Iluminación ambiente LED', text: 'Luz ambiente azul que envuelve el habitáculo al anochecer. Detalle de coche de categoría superior.', thumb: 'assets/interior-luz-ambiente.webp' },
-    { title: 'Carga inalámbrica', text: 'Base de carga inalámbrica en la consola: dejas el móvil y te olvidas del cable. Un USB menos del que tirar.', thumb: 'assets/interior-carga.webp' },
-    { title: 'Habitabilidad de sobra', text: 'Plazas traseras amplias poco habituales en el segmento B: rodillas y cabeza con espacio para los adultos de atrás.', thumb: 'assets/interior-traseros.webp' }
+    { title: 'Pantalla central de gran formato', text: 'Navegación, climatización y multimedia en una sola pantalla táctil de alta resolución. Lo que buscas, a un gesto.' },
+    { title: 'Iluminación ambiente LED', text: 'Luz ambiente azul que envuelve el habitáculo al anochecer. Detalle de coche de categoría superior.' },
+    { title: 'Carga inalámbrica', text: 'Base de carga inalámbrica en la consola: dejas el móvil y te olvidas del cable.' },
+    { title: 'Habitabilidad de sobra', text: 'Plazas traseras amplias poco habituales en el segmento B: rodillas y cabeza de sobra atrás.' }
   ];
-  const hsThumb = $('#hsThumb'), hsTitle = $('#hsTitle'), hsText = $('#hsText');
+  const hsStage = $('#hsStage'), hsPop = $('#hsPop'), hsTitle = $('#hsTitle'), hsText = $('#hsText');
   const dots = $$('.hotspot'), tabs = $$('.hotspots__nav button');
+  let hsCurrent = 0;
+  function placePop(dot) {
+    if (!hsStage || !hsPop) return;
+    const sr = hsStage.getBoundingClientRect();
+    if (sr.width <= 560) { hsPop.style.left = ''; hsPop.style.top = ''; return; } // móvil: CSS lo fija abajo
+    const dotX = parseFloat(dot.style.left) / 100 * sr.width;
+    const dotY = parseFloat(dot.style.top) / 100 * sr.height;
+    const pw = hsPop.offsetWidth || 250, ph = hsPop.offsetHeight || 90;
+    let x = Math.max(12, Math.min(dotX - pw / 2, sr.width - pw - 12));
+    let y = dotY + 26;
+    if (y + ph > sr.height - 12) y = Math.max(12, dotY - ph - 26);
+    hsPop.style.left = x + 'px';
+    hsPop.style.top = y + 'px';
+  }
   function setHotspot(i) {
     const d = HS[i]; if (!d) return;
-    if (hsThumb) hsThumb.src = d.thumb;
+    hsCurrent = i;
     if (hsTitle) hsTitle.textContent = d.title;
     if (hsText)  hsText.textContent = d.text;
     dots.forEach(b => b.classList.toggle('is-active', +b.dataset.index === i));
     tabs.forEach(b => b.classList.toggle('is-active', +b.dataset.index === i));
+    const dot = dots.find(b => +b.dataset.index === i);
+    if (dot) placePop(dot);
+    if (hsPop) hsPop.classList.add('is-shown');
   }
   [...dots, ...tabs].forEach(b => b.addEventListener('click', () => setHotspot(+b.dataset.index)));
+  window.addEventListener('resize', () => { const dot = dots.find(b => +b.dataset.index === hsCurrent); if (dot) placePop(dot); });
+  if (dots.length) setHotspot(0);
 
   /* ----------  CARGA: anima 30→80% al entrar en viewport  ---------- */
   const chargeBar = $('#chargeBar');
