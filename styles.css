@@ -1716,3 +1716,28 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 .charge__cup { font-size: 22px; line-height: 1; margin-left: 7px; display: inline-block; animation: cupbob 1.7s ease-in-out infinite; }
 @keyframes cupbob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
 @media (prefers-reduced-motion: reduce) { .charge__cup, .v2l__conn-flow, .v2l__conn-flow .dot { animation: none; } }
+
+/* ════════ Revisión Drawbridge · ronda 2 (26-jun) ════════ */
+/* ESPACIO: imagen grande y SIN recorte + cifras en una sola línea */
+.space__media { aspect-ratio: auto; background: none; box-shadow: none; }
+.space__media img { height: auto; object-fit: contain; border-radius: var(--r-lg); box-shadow: var(--shadow-md); }
+@media (min-width: 960px) { .space__grid { grid-template-columns: 1.5fr 1fr; align-items: center; } }
+.space__stats { grid-template-columns: repeat(3, auto); justify-content: start; gap: var(--s-6); }
+.space__stat { padding: 0; background: none; border: 0; }
+.space__stat dt { white-space: nowrap; font-size: clamp(26px, 2.5vw, 34px); }
+
+/* COLORES: coche mucho más grande (stage 4/3 = mismo ratio que el render, sin recorte) */
+.colors__stage { aspect-ratio: 4/3; }
+.colors__stage img { width: 100%; }
+@media (min-width: 860px) { .colors__inner { grid-template-columns: 1.65fr 0.9fr; } }
+
+/* V2L: números de horas mucho más grandes (tipo hotspot/stat) */
+.v2l__readout { min-width: 210px; padding: 16px 20px; }
+.v2l__readout-dev { font-size: 14px; }
+.v2l__readout-num { font-size: clamp(40px, 5.2vw, 58px); }
+.v2l__readout-num span { font-size: 20px; }
+
+/* V2L ahora usa FOTO en naturaleza: rellena el escenario (cover, sin flip ni sombra de recorte) */
+.v2l__stage { background: #0A0D22; display: block; }
+.v2l__stage img { width: 100%; height: 100%; object-fit: cover; transform: none; filter: none; }
+.v2l__stage::after { display: none; }
