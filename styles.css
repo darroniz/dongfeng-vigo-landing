@@ -1741,3 +1741,9 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 .v2l__stage { background: #0A0D22; display: block; }
 .v2l__stage img { width: 100%; height: 100%; object-fit: cover; transform: none; filter: none; }
 .v2l__stage::after { display: none; }
+
+/* V2L · icono junto a las horas + lectura que se mueve según el dispositivo */
+.v2l__readout { transition: top .35s ease, bottom .35s ease, left .35s ease, right .35s ease; }
+.v2l__readout-dev { display: flex; align-items: center; gap: 6px; justify-content: flex-end; }
+.v2l__readout-ico { display: inline-flex; }
+.v2l__readout-ico svg { width: 17px; height: 17px; color: var(--color-peri-2); }

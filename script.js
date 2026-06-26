@@ -293,16 +293,36 @@
   const devNum  = $('#v2lNum');
   const connIco = $('#v2lConnIco');
   const connName = $('#v2lConnName');
+  const readout = $('#v2lReadout');
+  const readoutIco = $('#v2lReadoutIco');
+  // cada dispositivo muestra su lectura en un punto distinto de la foto
+  const V2L_POS = [
+    { top: '16px', right: '16px' },
+    { top: '16px', left: '16px' },
+    { top: '40%', right: '16px' },
+    { top: '40%', left: '16px' }
+  ];
   function setDevice(btn) {
     devs.forEach(d => d.classList.toggle('is-active', d === btn));
+    const i = devs.indexOf(btn);
     const watts = parseInt(btn.dataset.watts, 10) || 100;
     const hours = Math.round(USABLE_WH / watts);
     if (devName) devName.textContent = btn.dataset.name;
     if (devNum)  devNum.textContent = hours.toLocaleString('es-ES');
-    // barra de conexión: el coche alimenta ESTE dispositivo
     const svg = btn.querySelector('svg');
-    if (connIco && svg) connIco.innerHTML = svg.outerHTML;
+    if (svg) {
+      if (connIco) connIco.innerHTML = svg.outerHTML;        // barra de conexión
+      if (readoutIco) readoutIco.innerHTML = svg.outerHTML;  // icono junto a las horas
+    }
     if (connName) connName.textContent = btn.dataset.name.split(' ')[0];
+    // mover la lectura a un punto distinto según el dispositivo
+    const p = V2L_POS[i] || V2L_POS[0];
+    if (readout) {
+      readout.style.top = p.top || 'auto';
+      readout.style.bottom = p.bottom || 'auto';
+      readout.style.left = p.left || 'auto';
+      readout.style.right = p.right || 'auto';
+    }
   }
   devs.forEach(btn => btn.addEventListener('click', () => setDevice(btn)));
   if (devs.length) setDevice(devs.find(d => d.classList.contains('is-active')) || devs[0]);
