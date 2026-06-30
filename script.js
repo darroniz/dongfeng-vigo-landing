@@ -332,7 +332,7 @@
     { title: 'Pantalla central de gran formato', text: 'Navegación, climatización y multimedia en una sola pantalla táctil de alta resolución. Lo que buscas, a un gesto.' },
     { title: 'Iluminación ambiente LED', text: 'Luz ambiente azul que envuelve el habitáculo al anochecer. Detalle de coche de categoría superior.' },
     { title: 'Carga inalámbrica', text: 'Base de carga inalámbrica en la consola: dejas el móvil y te olvidas del cable.' },
-    { title: 'Habitabilidad de sobra', text: 'Plazas traseras amplias poco habituales en el segmento B: rodillas y cabeza de sobra atrás.' }
+    { title: 'Habitabilidad para 5', text: '5 plazas con espacio trasero poco habitual en el segmento B: rodillas y cabeza de sobra atrás.' }
   ];
   const hsStage = $('#hsStage'), hsPop = $('#hsPop'), hsTitle = $('#hsTitle'), hsText = $('#hsText');
   const dots = $$('.hotspot'), tabs = $$('.hotspots__nav button');
