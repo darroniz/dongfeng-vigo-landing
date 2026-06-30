@@ -1336,6 +1336,7 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
   margin-left: 4px;
 }
 .field input,
+.field select,
 .form--inline input {
   padding: 14px 16px;
   font-size: 16px;  /* >=16px avoids iOS zoom */
@@ -1346,6 +1347,7 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
   font-family: var(--font-body);
 }
 .field input:focus,
+.field select:focus,
 .form--inline input:focus {
   outline: none;
   border-color: var(--color-cta);
@@ -1353,6 +1355,17 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 }
 .field input::placeholder,
 .form--inline input::placeholder { color: #B5B1A8; }
+/* Select de concesionario: misma caja que los inputs + chevron propio */
+.field select {
+  -webkit-appearance: none; -moz-appearance: none; appearance: none;
+  cursor: pointer;
+  color: var(--color-ink);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23807c73' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 44px;
+}
+.field select:invalid { color: #B5B1A8; }
 
 .form__legal {
   font-size: 12px;

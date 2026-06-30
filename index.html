@@ -135,7 +135,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
             </div>
             <h3 class="step__title">Apúntate a la lista</h3>
-            <p class="step__text">Déjanos tu nombre, teléfono y código postal y entra en la lista de espera del Dongfeng VIGO. Te asignamos tu concesionario Dongfeng más cercano.</p>
+            <p class="step__text">Déjanos tu nombre y teléfono y elige tu concesionario Dongfeng. Entras en la lista de espera y te avisan en cuanto puedas probarlo.</p>
           </li>
           <li class="step">
             <span class="step__num">02</span>
@@ -463,7 +463,7 @@
       <div class="modal__body" data-view="form">
         <p class="eyebrow">Lista de espera</p>
         <h3 id="modal-title" class="modal__title">Apúntate a la <em>lista de espera</em></h3>
-        <p class="modal__sub">Déjanos tus datos y sé de los primeros en probar el Dongfeng VIGO. Te asignamos tu concesionario Dongfeng más cercano, que te avisa en cuanto lleguen las primeras unidades.</p>
+        <p class="modal__sub">Déjanos tus datos, elige tu concesionario Dongfeng y sé de los primeros en probar el Dongfeng VIGO. Él te avisa en cuanto lleguen las primeras unidades.</p>
 
         <form class="form" id="leadForm">
           <div class="field">
@@ -474,9 +474,31 @@
             <label for="f-phone">Teléfono</label>
             <input type="tel" id="f-phone" name="phone" placeholder="Ej: 612 345 678" required autocomplete="tel" inputmode="tel" pattern="(\+?34[\s.\-]?)?[6789]\d{2}[\s.\-]?\d{3}[\s.\-]?\d{3}" title="Introduce un número español de 9 dígitos (ej: 612 345 678)">
           </div>
-          <div class="field field--cp">
-            <label for="f-cp">Código postal</label>
-            <input type="text" id="f-cp" name="cp" placeholder="Ej: 28001" required pattern="[0-9]{5}" maxlength="5" inputmode="numeric" autocomplete="postal-code" title="Introduce un código postal español de 5 dígitos">
+          <div class="field">
+            <label for="f-dealer">Concesionario Dongfeng</label>
+            <select id="f-dealer" name="dealer" required>
+              <option value="" disabled selected>Elige tu concesionario más cercano</option>
+              <option value="DE00110012">A Coruña</option>
+              <option value="DE00110011">Alicante</option>
+              <option value="DE05840006">Barcelona</option>
+              <option value="DE01100014">Bilbao</option>
+              <option value="DE06350009">Gandía</option>
+              <option value="DE00180001">Girona</option>
+              <option value="DE00160001">Guadalajara</option>
+              <option value="DE00050002">Madrid</option>
+              <option value="DE05710004">Majadahonda</option>
+              <option value="DE01050013">Málaga</option>
+              <option value="DE00070002">Murcia</option>
+              <option value="DE00150001">Navarra</option>
+              <option value="DE00110005">Oviedo</option>
+              <option value="DE00080001">Palma de Mallorca</option>
+              <option value="DE00060002">Sabadell</option>
+              <option value="DE00070001">Santander</option>
+              <option value="DE00110001">Sevilla</option>
+              <option value="DE00140001">Tarragona</option>
+              <option value="DE00090001">Valladolid</option>
+              <option value="DE00100004">Zaragoza</option>
+            </select>
           </div>
           <div class="field">
             <label for="f-email">Email <span class="field__optional">(opcional, te enviamos tu oferta)</span></label>
@@ -497,7 +519,7 @@
         <div class="success">
           <svg class="success__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
           <h3 class="success__title">¡Listo! Ya estás en la lista de espera.</h3>
-          <p class="success__sub">Tu concesionario Dongfeng más cercano te avisa en cuanto lleguen las primeras unidades del Dongfeng VIGO para que puedas probarlo. Sin compromiso.</p>
+          <p class="success__sub">El concesionario Dongfeng que has elegido te avisa en cuanto lleguen las primeras unidades del Dongfeng VIGO para que puedas probarlo. Sin compromiso.</p>
         </div>
       </div>
     </div>

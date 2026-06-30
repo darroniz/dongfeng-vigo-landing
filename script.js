@@ -98,45 +98,15 @@
     return p;
   }
 
-  // CP español → código de concesionario Salvador Caetano.
-  // Rangos específicos sobrescriben el default provincial (Sabadell dentro de 08, Majadahonda dentro de 28, Gandía dentro de 46).
-  function dealerCodeFromCP(cp) {
-    const digits = (cp || '').replace(/\D/g, '');
-    if (digits.length < 2) return '';
-    const n = parseInt(digits, 10);
-    if (n >= 8200 && n <= 8208) return 'DE00060002';   // Sabadell
-    if (n >= 28220 && n <= 28229) return 'DE05710004'; // Majadahonda
-    if (n >= 46700 && n <= 46729) return 'DE06350009'; // Gandía
-    const province = digits.slice(0, 2);
-    const provinceToDealer = {
-      '03': 'DE00110011', // Alicante
-      '07': 'DE00080001', // Palma de Mallorca
-      '08': 'DE05840006', // Barcelona
-      '15': 'DE00110012', // A Coruña
-      '17': 'DE00180001', // Girona
-      '19': 'DE00160001', // Guadalajara
-      '28': 'DE00050002', // Madrid
-      '29': 'DE01050013', // Málaga
-      '30': 'DE00070002', // Murcia
-      '31': 'DE00150001', // Navarra
-      '33': 'DE00110005', // Oviedo (Asturias)
-      '39': 'DE00070001', // Santander
-      '41': 'DE00110001', // Sevilla
-      '43': 'DE00140001', // Tarragona
-      '47': 'DE00090001', // Valladolid
-      '48': 'DE01100014', // Bilbao
-      '50': 'DE00100004', // Zaragoza
-      '35': 'DE00780003', // Las Palmas (Canarias)
-      '38': 'DE00090002'  // Santa Cruz de Tenerife (Canarias)
-    };
-    return provinceToDealer[province] || '';
-  }
+  // Concesionario: lo elige el usuario en el selector del formulario (campo name="dealer",
+  // value = código Salvador Caetano). Antes se derivaba del CP, pero ese enrutado daba problemas.
+  // Lista de concesionarios y códigos = los del selector nativo de BOX (send-to-zapier/dealer-code.txt).
 
   // 'CAN' si la landing setea window.LANDING_REGION o si el path empieza por /canarias; si no, 'PEN'.
   const REGION = (typeof window !== 'undefined' && window.LANDING_REGION)
     || (/^\/canarias(\/|$)/i.test(location.pathname) ? 'CAN' : 'PEN');
 
-  function buildPayload({ name, last_name, phone, cp, email, dealer }) {
+  function buildPayload({ name, last_name, phone, email, dealer }) {
     return {
       Name: name,
       Last_Name: last_name,
@@ -144,7 +114,7 @@
       Phone: phone,
       Model_Code: '819',
       Dealership_Code: dealer || '',
-      Postal_Code: cp || '',
+      Postal_Code: '',
       Privacy_Policy: 'Y',
       Consent: true,
       Lead_Type: 'TP10',
@@ -180,14 +150,12 @@
       const data = Object.fromEntries(new FormData(leadForm).entries());
       const { first, last } = splitName(data.name);
       const phone = normalizePhoneES(data.phone);
-      const cp = (data.cp || '').replace(/\D/g, '');
-      const dealer = dealerCodeFromCP(cp);
+      const dealer = data.dealer || '';   // código del concesionario elegido en el selector
 
       const payload = buildPayload({
         name: first,
         last_name: last,
         phone,
-        cp,
         email: data.email || '',
         dealer
       });
@@ -210,7 +178,6 @@
           address: {
             first_name: first,
             last_name: last,
-            postal_code: cp,
             country: 'ES'
           }
         }
