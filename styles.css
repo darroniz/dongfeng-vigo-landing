@@ -163,6 +163,11 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 
 .btn--lg { padding: 18px 32px; font-size: 16px; }
 .btn--sm { padding: 10px 20px; font-size: 14px; }
+/* En móviles estrechos el nowrap del botón desborda el layout: compactar y permitir salto de línea */
+@media (max-width: 379px) {
+  .btn { white-space: normal; text-align: center; }
+  .btn--lg { padding: 16px 22px; font-size: 15px; }
+}
 .btn--block { width: 100%; justify-content: center; }
 
 /* ----------  CHIPS  ---------- */
@@ -1653,6 +1658,8 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 .warranty__row { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-6); margin-top: var(--s-5); }
 .warranty__row div { font-size: 13px; color: rgba(255,255,255,.6); }
 .warranty__row strong { display: block; font-family: var(--font-display); font-size: 26px; font-weight: 800; color: #fff; letter-spacing: -.02em; }
+/* "cuentakilómetros." es irrompible: en pantallas estrechas el tamaño debe seguir al viewport o desborda el layout */
+@media (max-width: 640px) { .warranty__big { font-size: clamp(2rem, 9.5vw, 3rem); } }
 
 /* ═════════  SELECTOR DE COLOR  ═════════ */
 .colors__inner { display: grid; grid-template-columns: 1fr; gap: var(--s-6); align-items: center; }
@@ -1689,7 +1696,7 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 .cta-final__visual img { width: 108%; max-width: 108%; }
 @media (min-width: 960px) { .cta-final__grid { grid-template-columns: 0.82fr 1.18fr; } }
 
-/* #2 · Hotspots: popup SOBRE la imagen (no panel abajo) */
+/* #2 · Hotspots: popup sobre la imagen en desktop; panel debajo en mobile (no debe tapar la foto) */
 .hotspots__pop {
   position: absolute; z-index: 6; max-width: 262px;
   background: rgba(255,255,255,.97); backdrop-filter: blur(6px);
@@ -1702,7 +1709,12 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 .hotspots__pop h3 { font-size: 16px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
 .hotspots__pop p { font-size: 13.5px; line-height: 1.45; color: var(--color-ink-muted); margin: 0; }
 @media (max-width: 560px) {
-  .hotspots__pop { left: 10px !important; right: 10px !important; top: auto !important; bottom: 10px !important; max-width: none; transform: translateY(0); }
+  .hotspots__stage { aspect-ratio: auto; overflow: visible; box-shadow: none; display: flex; flex-direction: column; }
+  .hotspots__stage img { aspect-ratio: 16/10; height: auto; border-radius: var(--r-lg); box-shadow: var(--shadow-lg); }
+  .hotspots__pop {
+    position: static; margin-top: 12px; max-width: none;
+    opacity: 1; transform: none; pointer-events: auto;
+  }
 }
 
 /* #1 · V2L: barra de conexión coche → ⚡ → dispositivo */
@@ -1738,6 +1750,8 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 .space__stats { grid-template-columns: repeat(3, auto); justify-content: start; gap: var(--s-6); }
 .space__stat { padding: 0; background: none; border: 0; }
 .space__stat dt { white-space: nowrap; font-size: clamp(26px, 2.5vw, 34px); }
+/* En móviles estrechos los gaps de 32px no caben junto a las 3 cifras: apretar para mantener la línea única */
+@media (max-width: 379px) { .space__stats { gap: var(--s-3); } }
 
 /* COLORES: coche mucho más grande (stage 4/3 = mismo ratio que el render, sin recorte) */
 .colors__stage { aspect-ratio: 4/3; }
