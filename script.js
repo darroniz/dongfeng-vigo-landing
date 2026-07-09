@@ -77,9 +77,12 @@
   // Puerta de entrada (Apps Script). Valida el lead y, solo si pasa el filtro
   // antibots, lo escribe en la Sheet y lo reenvía a Zapier (server-side).
   // La URL de Zapier YA NO vive aquí: está dentro del Apps Script, fuera de la página pública.
-  const GATEWAY_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzrS__THM2OPA35AQlrS5Hn3gObNEPRU_kiHQWAtGefzRJM5JzuDxK1e5lLGu4jPMHG/exec';
+  // Gateway propio del VIGO (Apps Script → Sheet "Leads Landing VIGO").
+  // TODO deploy: pegar aquí la URL /exec del Web App tras desplegar
+  // gateway/apps-script-gateway.gs. Vacío = el lead NO se envía (solo dataLayer).
+  const GATEWAY_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyYEKZqwjkI79ucqwzkXShW6MZ7I1KDcsirMCu_wpaGBqQWAB7biDborhQPgAmOAFhq5A/exec';
   // Token compartido con el Apps Script. Los hits directos de bots al endpoint no lo traen.
-  const FORM_TOKEN = 'dfbox-a7f3k92mq';
+  const FORM_TOKEN = 'dfvigo-k3m9x72qp';
 
   function splitName(fullName) {
     const parts = (fullName || '').trim().split(/\s+/);
@@ -112,7 +115,7 @@
       Last_Name: last_name,
       Email: email || '',
       Phone: phone,
-      Model_Code: '819',
+      Model_Code: '820',            // Dongfeng VIGO (confirmado 08-jul-2026)
       Dealership_Code: dealer || '',
       Postal_Code: '',
       Privacy_Policy: 'Y',
@@ -243,10 +246,10 @@
 /* ============================================================
    VIGO — interacciones específicas de esta landing
    (V2L, tour interior por hotspots, carga animada, selector de color)
-   ⚠️ Pendiente go-live: el bloque de FORM SUBMIT de arriba hereda los
-   códigos del BOX (Model_Code 819, Campaign_Code CPH020, FORM_TOKEN,
-   mapa de dealers de Salvador Caetano). Sustituir por los códigos del
-   VIGO y su distribuidor cuando el cliente los facilite.
+   Códigos CRM del VIGO confirmados (08-jul-2026): Model_Code 820,
+   Campaign_Code CPH020 (común Dongfeng), FORM_TOKEN dfvigo-* propio.
+   Pendiente go-live: pegar la URL /exec del gateway propio del VIGO
+   (ver TODO deploy en el bloque de FORM SUBMIT).
    ============================================================ */
 (() => {
   'use strict';
