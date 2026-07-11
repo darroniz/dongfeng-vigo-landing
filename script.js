@@ -151,13 +151,14 @@
     leadForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(leadForm).entries());
-      const { first, last } = splitName(data.name);
+      const { first, last } = splitName(data.name);   // split solo para Enhanced Conversions
+      const fullName = (data.name || '').trim();       // CRM: nombre+apellidos completo → Last_Name
       const phone = normalizePhoneES(data.phone);
       const dealer = data.dealer || '';   // código del concesionario elegido en el selector
 
       const payload = buildPayload({
-        name: first,
-        last_name: last,
+        name: '',
+        last_name: fullName,
         phone,
         email: data.email || '',
         dealer
