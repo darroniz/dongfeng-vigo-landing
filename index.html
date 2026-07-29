@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-P5RVP4GS');</script>
-  <!-- End Google Tag Manager -->
+  <!-- Cookies / consentimiento — CMP de Dongfeng (Rigor CG, mismo token que dongfeng-auto.es).
+       Pinta el banner, fija Consent Mode (ad_storage / analytics_storage) y carga GTM-P5RVP4GS
+       DESPUÉS del consentimiento. No añadir el snippet de GTM a mano: lo inyecta este script. -->
+  <script src="https://cookies.rigorcg.pt/script/?token=8kv23E1tAfMt7ZdsczXalorg"></script>
 
-  <!-- Google tag (gtag.js) — GA4 propio (cuenta PARETO-EXPERTIA) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QYVW74P0B9"></script>
+  <!-- GA4 propio (cuenta PARETO-EXPERTIA) — bloqueado hasta el consentimiento: el CMP
+       reactiva los <script type="text/plain" data-type="..."> al aceptar. No quitar el type. -->
+  <script type="text/plain" data-type="rgcPerformance" src="https://www.googletagmanager.com/gtag/js?id=G-QYVW74P0B9"></script>
+  <script type="text/plain" data-type="rgcPerformance">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QYVW74P0B9');   // GA4 — Dongfeng VIGO
+  </script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -31,11 +35,6 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5RVP4GS"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
   <!-- 0. TOP BAR -->
   <div class="topbar" id="topbar">
     <p class="topbar__text">
