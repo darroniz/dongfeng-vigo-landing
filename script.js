@@ -102,7 +102,7 @@
   }
 
   // Concesionario: lo elige el usuario en el selector del formulario (campo name="dealer",
-  // value = código Salvador Caetano). Antes se derivaba del CP, pero ese enrutado daba problemas.
+  // value = código de concesionario oficial). Antes se derivaba del CP, pero ese enrutado daba problemas.
   // Lista de concesionarios y códigos = los del selector nativo de BOX (send-to-zapier/dealer-code.txt).
 
   // 'CAN' si la landing setea window.LANDING_REGION o si el path empieza por /canarias; si no, 'PEN'.
