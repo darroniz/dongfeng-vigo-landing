@@ -1321,13 +1321,14 @@ main > section { padding-block: clamp(var(--s-8), 6vw, var(--s-10)); }
 }
 
 /* ----------  FORM  ---------- */
-.form { display: grid; gap: var(--s-4); }
+.form { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
 .form--inline {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: var(--s-3);
 }
-.field { display: grid; gap: 6px; }
+.field { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.field input, .field select { width: 100%; min-width: 0; }
 .field label {
   font-size: 13px;
   font-weight: 600;
