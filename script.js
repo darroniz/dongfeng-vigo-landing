@@ -103,7 +103,7 @@
 
   // Concesionario: lo elige el usuario en el selector del formulario (campo name="dealer",
   // value = código de concesionario oficial). Antes se derivaba del CP, pero ese enrutado daba problemas.
-  // Lista de concesionarios y códigos = los del selector nativo de BOX (send-to-zapier/dealer-code.txt).
+  // Lista de concesionarios y códigos = listado del cliente actualizado a 31-08-2026.
 
   // 'CAN' si la landing setea window.LANDING_REGION o si el path empieza por /canarias; si no, 'PEN'.
   const REGION = (typeof window !== 'undefined' && window.LANDING_REGION)
@@ -165,7 +165,7 @@
       });
       // Antibots: token compartido + honeypot. El Apps Script descarta lo que no cuadre.
       payload._t = FORM_TOKEN;
-      payload._hp = data.fax || '';
+      payload._hp = data.hp_ref || '';   // campo trampa: nombre que el autocompletado no reconoce (antes «fax», que se rellenaba con el teléfono)
 
       sendToGateway(payload);
 

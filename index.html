@@ -487,26 +487,29 @@
             <label for="f-dealer">Concesionario Dongfeng</label>
             <select id="f-dealer" name="dealer" required>
               <option value="" disabled selected>Elige tu concesionario</option>
-              <option value="DE00110012">A Coruña</option>
-              <option value="DE00110011">Alicante</option>
-              <option value="DE05840006">Barcelona</option>
-              <option value="DE01100014">Bilbao</option>
-              <option value="DE06350009">Gandía</option>
-              <option value="DE00180001">Girona</option>
-              <option value="DE00160001">Guadalajara</option>
-              <option value="DE00050002">Madrid</option>
-              <option value="DE05710004">Majadahonda</option>
-              <option value="DE01050013">Málaga</option>
-              <option value="DE00070002">Murcia</option>
-              <option value="DE00150001">Navarra</option>
-              <option value="DE00110005">Oviedo</option>
-              <option value="DE00080001">Palma de Mallorca</option>
-              <option value="DE00060002">Sabadell</option>
-              <option value="DE00070001">Santander</option>
-              <option value="DE00110001">Sevilla</option>
-              <option value="DE00140001">Tarragona</option>
-              <option value="DE00090001">Valladolid</option>
-              <option value="DE00100004">Zaragoza</option>
+              <option value="DE00110012">A Coruña · Caetano Force</option>
+              <option value="DE00160001">Alcalá de Henares · Dongfeng Chinares</option>
+              <option value="DE00110011">Alicante · Dongfeng Grupo Huertas</option>
+              <option value="DE00090004">Almería · Dongfeng Indalo</option>
+              <option value="DE01100014">Barakaldo · Dongfeng Blendio</option>
+              <option value="DE06350009">Gandía · Dongfeng Moll</option>
+              <option value="DE00180001">Girona · Dongfeng Texauto</option>
+              <option value="DE07000012">Granada · Dongfeng Overland</option>
+              <option value="DE00780003">Las Palmas de Gran Canaria · Dongfeng Pelican Motor</option>
+              <option value="DE00110002">Leganés · Dongfeng Grupo Cars</option>
+              <option value="DE00110007">Majadahonda · Caetano Force</option>
+              <option value="DE01050013">Málaga · Caetano Force</option>
+              <option value="DE00200001">Manresa · Dongfeng Full Traction</option>
+              <option value="DE00840005">Mérida · Dongfeng X-Space Maven</option>
+              <option value="DE00070002">Murcia · Dongfeng Grupo Huertas</option>
+              <option value="DE00150001">Noáin (Navarra) · Dongfeng Grupo Torregrosa</option>
+              <option value="DE00110005">Oviedo (Colloto) · Dongfeng Blendio</option>
+              <option value="DE00140001">Reus (Tarragona) · Dongfeng Nima Grup</option>
+              <option value="DE00070001">Santander · Dongfeng Blendio</option>
+              <option value="DE00110001">Sevilla · Caetano Force</option>
+              <option value="DE00090002">Tenerife · Dongfeng Pelican Motor</option>
+              <option value="DE00090001">Valladolid · Dongfeng Autocyl</option>
+              <option value="DE00100004">Zaragoza · Dongfeng Grupo Ágreda</option>
             </select>
           </div>
           <div class="field">
@@ -516,7 +519,7 @@
           <!-- Honeypot antibots: oculto a personas, los bots tienden a rellenarlo. Si llega con valor, el Apps Script descarta el lead. -->
           <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden;" tabindex="-1">
             <label>No rellenar
-              <input type="text" name="fax" tabindex="-1" autocomplete="off">
+              <input type="text" name="hp_ref" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore>
             </label>
           </div>
           <button type="submit" class="btn btn--primary btn--lg btn--block">Quiero probarlo</button>
